@@ -19,6 +19,25 @@ btnElement.addEventListener("click", (evt)=>{
     evt.preventDefault()
 
     // obtener valor del input
+    const inputElement=document.querySelector(".js-value")
 
-    // comparar el valor introcudo con el random
+    // obtener el elemento pista
+    const pistaElement=document.querySelector (".js-pista")
+
+    // muestro consola el valor del input
+    console.log('el valor introducido ' + inputElement.value)
+
+    // comparar el valor introducido con el random
+    if (random === parseInt(inputElement.value)){
+        console.log ("Has ganado campeona")
+    }
+    else if ( random > inputElement.value) {
+        console.log("el numero es demasiado bajo")
+        pistaElement.innerHTML ="el numero es demasiado bajo"
+    } 
+    else if (random < inputElement.value) {
+        console.log ("demasiado alto")
+    
+    }
+
 })
