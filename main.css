@@ -1,0 +1,23 @@
+.random-form {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-between;
+}
+.prueba-btn{
+    background-color: rgb(4, 206, 206);
+    color:whitesmoke;
+    font-weight: 900;
+    border: none;
+    border-radius: 5px;
+    padding: 0.3rem;
+    width: 100px;
+}
+
+.here-number{
+    background-color: lightgrey;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    padding: 0.5rem;
+}
