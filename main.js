@@ -1,43 +1,46 @@
-// defino funcion random
+"use strict"
+
+const random= getRandomNumber(100);
+const pistaElement=document.querySelector (".js-pista");
+const btnElement=document.querySelector(".js-btn");
+const triesElement=document.querySelector(".js-tries");
+const inputElement=document.querySelector(".js-value") 
+let tries=0;
+
 function getRandomNumber(max) { 
   return Math.ceil(Math.random() * max); 
 }
 
-// obtengo numero random
-const random= getRandomNumber(100)
 
-
-// pinto mi numero en la consola
-console.log("este es mi numero random " +random )
-
-// busco el boton prueba 
-const btnElement=document.querySelector(".js-btn")
-
-// añado listener al boton prueba 
-btnElement.addEventListener("click", (evt)=>{
+// defino funcion check result
+ function checkResult(evt){
     // evitar que se refresque la pagina 
     evt.preventDefault()
-
-    // obtener valor del input
-    const inputElement=document.querySelector(".js-value")
-
-    // obtener el elemento pista
-    const pistaElement=document.querySelector (".js-pista")
+    tries++;
+    triesElement.innerHTML= "Número de intentos es " + tries
 
     // muestro consola el valor del input
-    console.log('el valor introducido ' + inputElement.value)
-
-    // comparar el valor introducido con el random
-    if (random === parseInt(inputElement.value)){
-        console.log ("Has ganado campeona")
+    const userNumber = parseInt(inputElement.value)
+    if (userNumber<0 || userNumber> 100 || isNaN(userNumber)) {
+         pistaElement.innerHTML= "Error: Tu número debe estar comprendido entre 0 y 100"
+    } else if (random === userNumber){
+      pistaElement.innerHTML =" Has ganado campeona"
     }
-    else if ( random > inputElement.value) {
-        console.log("el numero es demasiado bajo")
-        pistaElement.innerHTML ="el numero es demasiado bajo"
+    else if ( random > userNumber) {
+        pistaElement.innerHTML ="El numero es demasiado bajo"
     } 
-    else if (random < inputElement.value) {
-        console.log ("demasiado alto")
-    
+    else if (random < userNumber) {
+        pistaElement.innerHTML ="El numero es demasiado alto"
     }
+}
 
+// añado listener al boton prueba 
+btnElement.addEventListener("click", checkResult)
+inputElement.addEventListener("keyup", ()=> {
+    if(inputElement.value.length > 0){
+        btnElement.removeAttribute("disabled")
+    } else {
+        btnElement.disabled = true
+    }
 })
+
